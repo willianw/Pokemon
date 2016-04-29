@@ -1,21 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author willi_000
- */
+import java.util.Scanner;
+
 public class Jogador {
+    static final int MAXPOKEMONS = Main.MAXPOKEMONS;
+    Scanner scan = new Scanner(System.in);
     String nome;
+    Pokemon[] campo;
     
     public void setNome(String nome){
         this.nome = nome;
     }
     
-    public void getNome(){
-        System.out.println("Nome: " + nome);
+    public Jogador(int n){
+        System.out.print("Digite o nome do jogador #" + n + ": ");
+        this.nome = scan.next();
+        campo = new Pokemon[MAXPOKEMONS];
+        for(int i = 0; i < MAXPOKEMONS; i++){
+            campo[i] = new Pokemon();
+        }
     }
+    
 }
