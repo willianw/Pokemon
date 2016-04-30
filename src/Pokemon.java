@@ -8,15 +8,17 @@
  *
  * @author willi_000
  */
-
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Pokemon {
     Scanner scan = new Scanner(System.in);
     String nome, tipo;
     int vida;
-    public Pokemon(){
-        System.out.print("Digite a vida do primeiro pokemón: ");
-        this.vida = Integer.parseInt(scan.next());
+    public Pokemon(int i){
+        
     }
 }

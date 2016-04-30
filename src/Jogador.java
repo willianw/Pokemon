@@ -16,7 +16,9 @@ public class Jogador {
         this.nome = scan.next();
         campo = new Pokemon[MAXPOKEMONS];
         for(int i = 0; i < MAXPOKEMONS; i++){
-            campo[i] = new Pokemon();
+            Pokedex.apresentar();
+            System.out.println("Escolha um pokemón: ");
+            campo[i] = new Pokemon(Integer.parseInt(scan.next()));
         }
     }
     
