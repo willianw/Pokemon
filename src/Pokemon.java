@@ -18,7 +18,9 @@ public class Pokemon {
     Scanner scan = new Scanner(System.in);
     String nome, tipo;
     int vida;
-    public Pokemon(int i){
-        
+    public Pokemon(HashMap receita){
+        this.nome = (String)receita.get("Nome");
+        this.tipo = (String)receita.get("Tipo");
+        this.vida = Integer.parseInt((String)receita.get("Vida"));
     }
 }

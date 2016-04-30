@@ -62,15 +62,14 @@ public final class Pokedex{
     }
     
     public static HashMap getHashPokemon(int k) throws Exception{
-        HashMap resp = new HashMap();
         Iterator i = (Pokedex.getMaps()).iterator();
         int j = 1;
-        while(i.hasNext() || j < k){
-            resp = (HashMap)i.next();
+        while(i.hasNext() && j < k){
+            i.next();
             j++;
         }
         if (j == k)
-            return resp;
+            return (HashMap)i.next();
         else
             throw new Exception("Valor inválido");
         
