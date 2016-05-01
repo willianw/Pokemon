@@ -15,12 +15,20 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Pokemon {
+    public static int MAXATK = 4;
     Scanner scan = new Scanner(System.in);
     String nome, tipo;
     int vida;
+    
     public Pokemon(HashMap receita){
         this.nome = (String)receita.get("Nome");
         this.tipo = (String)receita.get("Tipo");
         this.vida = Integer.parseInt((String)receita.get("Vida"));
+    }
+    
+    public void apresentar(){
+        System.out.println("Nome: " + nome);
+        System.out.println("Tipo: " + tipo);
+        System.out.println("Vida: " + vida);
     }
 }
