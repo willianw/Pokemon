@@ -10,8 +10,8 @@ public class Battle {
         j1 = new Jogador(1);
         j2 = new Jogador(2);
         rodada = 0;
-        j1.escolher();
-        j2.escolher();
+        j1.escolherPokemon();
+        j2.escolherPokemon();
         
         j1.setAdversario(j2);
         j2.setAdversario(j1);

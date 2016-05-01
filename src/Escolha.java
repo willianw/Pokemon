@@ -16,6 +16,6 @@ public class Escolha extends Evento{
     }
     @Override
     public void executar() throws Exception{
-        from.escolher();
+        from.escolherPokemon();
     }
 }

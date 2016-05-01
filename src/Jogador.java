@@ -1,7 +1,7 @@
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Jogador {
@@ -10,7 +10,9 @@ public class Jogador {
     String nome;
     Jogador adversario;
     Pokemon ativo;
+    Item utilizando;
     Collection <Pokemon> campo;
+    Collection <Item> inventario;
     Boolean desistido;
     int numero;
     
@@ -27,6 +29,10 @@ public class Jogador {
     }
     
     public Jogador(int n) throws Exception{
+	this.inventario = new ArrayList<>();
+	this.inventario.add(new Remedio(this, 20)); //Provisório.
+	this.utilizando = inventario.iterator().next();
+	//Posterior: adicionar loja de itens;
         this.desistido = false;
         this.numero = n;
         cadastrarJogador();
@@ -47,7 +53,32 @@ public class Jogador {
         }
     }
     
-    public void escolher() throws Exception{
+    public void menuItem() throws Exception{
+	System.out.println("Escolher ítem");
+	Iterator i = inventario.iterator();
+	if(inventario.isEmpty())
+	    System.out.println("Inventário Vazio!");
+	else{
+	    int j = 0;
+	    while(i.hasNext()){
+		System.out.println(++j + ". " + ((Item)i.next()).apresentar());
+	    }
+	    usarItem(Integer.parseInt(scan.next()));
+	}
+    }
+    
+    private void usarItem(int k) throws Exception{
+	Iterator i = inventario.iterator();
+	int j = 1;
+	while(i.hasNext() && j < k){
+	    i.next();
+	}
+	if (j == k)
+	    ((Item)i.next()).utilizar();
+	else
+	    throw new Exception ("Valor inválido.");
+    }
+    public void escolherPokemon() throws Exception{
         Iterator i = campo.iterator();
         int j = 1;
         while(i.hasNext()){
@@ -72,7 +103,11 @@ public class Jogador {
 		(new Desistencia(this, null)).executar();
 		break;
 	    case 2:
-		this.escolher();
+		this.escolherPokemon();
+		break;
+	    case 3:
+		this.menuItem();
+		break;
             case 4: 
                 (new Ataque(this, adversario)).executar();
                 break;

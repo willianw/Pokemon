@@ -52,7 +52,11 @@ public class Pokemon {
         System.out.println(nome + " morreu");
         treinador.campo.remove(this);
         if(treinador.temPokemons())
-            treinador.escolher();
+            treinador.escolherPokemon();
+    }
+    
+    public void adicionaVida(int val){
+	this.vida += val;
     }
     
     public int danoAtkAtivo(){
