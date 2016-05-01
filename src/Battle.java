@@ -12,6 +12,10 @@ public class Battle {
         rodada = 0;
         j1.escolher();
         j2.escolher();
+        
+        j1.setAdversario(j2);
+        j2.setAdversario(j1);
+        
         while(j1.podeJogar() && j2.podeJogar()){
             if((++rodada % 2) == 1)
                 j1.jogada();

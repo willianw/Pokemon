@@ -47,7 +47,7 @@ public class Pokemon {
     }
     
     public void morrer(){
-        System.out.println(nome + "morreu");
+        System.out.println(nome + " morreu");
     }
     
     public int danoAtkAtivo(){

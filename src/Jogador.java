@@ -8,10 +8,15 @@ public class Jogador {
     static final int MAXPOKEMONS = Main.MAXPOKEMONS;
     Scanner scan = new Scanner(System.in);
     String nome;
+    Jogador adversario;
     Pokemon ativo;
     Collection <Pokemon> campo;
     Boolean desistido;
     int numero;
+
+    public void setAdversario(Jogador adversario){
+        this.adversario = adversario;
+    }
     
     public void setNome(String nome){
         this.nome = nome;
@@ -50,13 +55,18 @@ public class Jogador {
     
     public void jogada(){
         System.out.println("Vez de " + nome + ": ");
-        System.out.println("Pokemon ativo" + this.ativo.apresentar());
+        System.out.println("Pokemon ativo: \n" + this.ativo.apresentar());
         System.out.println("1. Correr");
         System.out.println("2. Trocar Pokemon");
         System.out.println("3. Usar ítem");
         System.out.println("4. Atacar");
         
         int opcao = Integer.parseInt(scan.next());//Substituir por escolha de ação
+        
+        switch(opcao){
+            case 4: 
+                (new Ataque(this, adversario)).executar();
+        }
     }
     
     public boolean querJogar(){
