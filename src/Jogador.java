@@ -42,7 +42,7 @@ public class Jogador {
         Iterator i = campo.iterator();
         int j = 1;
         while(i.hasNext()){
-            ((Pokemon)i.next()).apresentar();
+            System.out.println(((Pokemon)i.next()).apresentar());
         }
         System.out.print("Escolha um pokemon: ");
         this.ativo = procurarPokemon(Integer.parseInt(scan.next()));
@@ -50,6 +50,13 @@ public class Jogador {
     
     public void jogada(){
         System.out.println("Vez de " + nome + ": ");
+        System.out.println("Pokemon ativo" + this.ativo.apresentar());
+        System.out.println("1. Correr");
+        System.out.println("2. Trocar Pokemon");
+        System.out.println("3. Usar ítem");
+        System.out.println("4. Atacar");
+        
+        int opcao = Integer.parseInt(scan.next());//Substituir por escolha de ação
     }
     
     public boolean querJogar(){

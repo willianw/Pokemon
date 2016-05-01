@@ -8,6 +8,8 @@
  *
  * @author willi_000
  */
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -17,18 +19,38 @@ import java.util.Scanner;
 public class Pokemon {
     public static int MAXATK = 4;
     Scanner scan = new Scanner(System.in);
+    PokeAtaque atkAtivo;
+    Collection <PokeAtaque> ataques;
     String nome, tipo;
     int vida;
     
     public Pokemon(HashMap receita){
+        ataques = new ArrayList<>();
         this.nome = (String)receita.get("Nome");
         this.tipo = (String)receita.get("Tipo");
         this.vida = Integer.parseInt((String)receita.get("Vida"));
+        for(int i = 1; i <= MAXATK; i++){
+            ataques.add(new PokeAtaque("Ataque "+ i, Integer.parseInt((String)receita.get("a"+i))));
+        }
+        Iterator i = ataques.iterator();
+        this.atkAtivo = (PokeAtaque)i.next();
     }
     
-    public void apresentar(){
-        System.out.println("Nome: " + nome);
-        System.out.println("Tipo: " + tipo);
-        System.out.println("Vida: " + vida);
+    public String apresentar(){
+        return ("Nome: " + nome + "\nTipo: " + tipo + "\nVida: " + vida);
+    }
+    
+    public void tomaDano(int dano){
+        vida -= dano;
+        if (vida <= 0)
+            morrer();
+    }
+    
+    public void morrer(){
+        System.out.println(nome + "morreu");
+    }
+    
+    public int danoAtkAtivo(){
+        return atkAtivo.getDano();
     }
 }

@@ -10,6 +10,8 @@ public class Battle {
         j1 = new Jogador(1);
         j2 = new Jogador(2);
         rodada = 0;
+        j1.escolher();
+        j2.escolher();
         while(j1.podeJogar() && j2.podeJogar()){
             if((++rodada % 2) == 1)
                 j1.jogada();
