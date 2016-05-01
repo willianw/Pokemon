@@ -12,8 +12,8 @@ public abstract class Evento {
     String nome;
     int prioridade;
     Jogador from, to;
-    abstract void executar();
-    public Evento (Jogador from, Jogador to){
+    abstract void executar() throws Exception;
+    public Evento(Jogador from, Jogador to)throws Exception{
         this.from = from;
         this.to = to;
     }

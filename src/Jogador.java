@@ -13,6 +13,10 @@ public class Jogador {
     Collection <Pokemon> campo;
     Boolean desistido;
     int numero;
+    
+    public void desistir(){
+	this.desistido = true;
+    }
 
     public void setAdversario(Jogador adversario){
         this.adversario = adversario;
@@ -39,7 +43,7 @@ public class Jogador {
         for(int i = 0; i < MAXPOKEMONS; i++){
             Pokedex.apresentar();
             System.out.print("["+i+"/"+MAXPOKEMONS+"] Escolha um pokemón: ");
-            campo.add(new Pokemon(Pokedex.getHashPokemon(Integer.parseInt(scan.next()))));
+            campo.add(new Pokemon(Pokedex.getHashPokemon(Integer.parseInt(scan.next())), this));
         }
     }
     
@@ -53,7 +57,7 @@ public class Jogador {
         this.ativo = procurarPokemon(Integer.parseInt(scan.next()));
     }
     
-    public void jogada(){
+    public void jogada() throws Exception{
         System.out.println("Vez de " + nome + ": ");
         System.out.println("Pokemon ativo: \n" + this.ativo.apresentar());
         System.out.println("1. Correr");
@@ -64,8 +68,16 @@ public class Jogador {
         int opcao = Integer.parseInt(scan.next());//Substituir por escolha de ação
         
         switch(opcao){
+	    case 1:
+		(new Desistencia(this, null)).executar();
+		break;
+	    case 2:
+		this.escolher();
             case 4: 
                 (new Ataque(this, adversario)).executar();
+                break;
+	    default:
+		throw new Exception("Opção inválida");
         }
     }
     
