@@ -20,11 +20,13 @@ public class Pokemon {
     public static int MAXATK = 4;
     Scanner scan = new Scanner(System.in);
     PokeAtaque atkAtivo;
+    Jogador treinador;
     Collection <PokeAtaque> ataques;
     String nome, tipo;
     int vida;
     
-    public Pokemon(HashMap receita){
+    public Pokemon(HashMap receita, Jogador treinador){
+        this.treinador = treinador;
         ataques = new ArrayList<>();
         this.nome = (String)receita.get("Nome");
         this.tipo = (String)receita.get("Tipo");
@@ -40,14 +42,17 @@ public class Pokemon {
         return ("Nome: " + nome + "\nTipo: " + tipo + "\nVida: " + vida);
     }
     
-    public void tomaDano(int dano){
+    public void tomaDano(int dano) throws Exception{
         vida -= dano;
         if (vida <= 0)
             morrer();
     }
     
-    public void morrer(){
+    public void morrer() throws Exception{
         System.out.println(nome + " morreu");
+        treinador.campo.remove(this);
+        if(treinador.temPokemons())
+            treinador.escolher();
     }
     
     public int danoAtkAtivo(){

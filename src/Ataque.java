@@ -9,13 +9,12 @@
  * @author willi_000
  */
 public class Ataque extends Evento{
-    public Ataque(Jogador from, Jogador to){
+    public Ataque(Jogador from, Jogador to) throws Exception{
         super(from, to);
         this.nome = "Ataque";
         this.prioridade = 4;
     }
-    @Override
-    public void executar(){
+    public void executar() throws Exception{
         to.ativo.tomaDano(from.ativo.danoAtkAtivo());
     }
 }
